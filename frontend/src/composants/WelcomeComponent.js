@@ -11,7 +11,7 @@ export default function WelcomeComponent(props) {
   return (
     <div className={`fullscreen ${Style.container}`}>
       <span className={Style.tandl}>
-        <h1 className={Style.websitename}>NOM DU PROJET</h1>
+        <h1 className={Style.websitename}>Quizly</h1>
         <img src="/logo.png" className="logo2" />
       </span>
       <div className={Style.buttonContainer}>

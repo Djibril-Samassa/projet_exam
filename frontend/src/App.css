@@ -75,16 +75,32 @@
   color: white;
 }
 
-.logo{
+.logo {
   width: 10vw;
 }
 
-.logo2{
+.logo2 {
   width: 15vw;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.makeBigger {
+  transform: scale(1);
+  cursor: pointer;
+}
+
+.makeBigger:hover {
+  font-weight: bold;
+  transform: scale(1.1);
+  transition-duration: 300ms;
+}
+
+.selected {
+  font-weight: bold;
+  border-bottom: 3px solid #efcb68;
 }
 
 @keyframes App-logo-spin {

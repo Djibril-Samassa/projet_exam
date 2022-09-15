@@ -1,15 +1,45 @@
-.header{
-    display: flex;
-    align-items: center;
-    width: 60%;
-    justify-content: space-between;
-    margin: 0 auto;
+.header {
+  display: flex;
+  align-items: center;
+  width: 60%;
+  justify-content: space-between;
+  margin: 0 auto;
 }
 
-.header>li{
-    color: #222;
-    font-family: 'Poppins';
-    list-style: none;
-    font-size: 1.3em;
+.menu {
+  display: flex;
+  flex-direction: column;
 }
 
+.header > li {
+  color: #222;
+  font-family: "Poppins";
+  list-style: none;
+  font-size: 1.3em;
+  transform: scale(1);
+}
+
+.header > span > li {
+  color: #222;
+  font-family: "Poppins";
+  list-style: none;
+  font-size: 1.3em;
+  transform: scale(1);
+}
+
+.underline {
+  margin: 0 auto;
+  padding: 1.5px;
+  width: 100%;
+  background-color: #efcb68;
+  animation: animate 100ms linear;
+}
+
+@keyframes animate {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
