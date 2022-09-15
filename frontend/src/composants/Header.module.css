@@ -1,0 +1,15 @@
+.header{
+    display: flex;
+    align-items: center;
+    width: 60%;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.header>li{
+    color: #222;
+    font-family: 'Poppins';
+    list-style: none;
+    font-size: 1.3em;
+}
+
