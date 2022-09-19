@@ -1,39 +1,61 @@
 /*eslint-disable*/
-import logo from "./logo.svg";
+import Profile from "./pages/Profil";
+import PageNotFound from "./composants/PageNotFound";
 import "./App.css";
+import InvitToAuth from "./composants/Authentification/InvitToAuth";
 import Accueil from "./pages/Accueil";
-import Formulaire from "./composants/Formulaire";
-import { createContext, useState } from "react";
-import { Route, Routes, BrowserRouter, Form } from "react-router-dom";
-export const haveAccountcontext = createContext();
-export const modalContext = createContext();
+import Inscription from "./composants/Authentification/Inscription";
+import Connexion from "./composants/Authentification/Connexion";
+import { createContext, useEffect, useRef, useState } from "react";
+import Header from "./composants/Header";
+import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
+export const authContext = createContext();
+export const menuContext = createContext();
 
 function App() {
-  const [haveAccount, setHaveAccount] = useState(false);
-  const [showModal, setShowModal] = useState(true);
-  const modalValue = {
-    showModal: showModal,
-    setShowModal: setShowModal,
+  const [selectedMenu, setSelectedMenu] = useState("");
+  const [auth, setAuth] = useState();
+  const authValue = {
+    auth: auth,
+    setAuth: setAuth,
   };
-  const value = {
-    haveAccount: haveAccount,
-    setHaveAccount: setHaveAccount,
+  const menuValue = {
+    selectedMenu: selectedMenu,
+    setSelectedMenu: setSelectedMenu,
   };
+
+  const isloggedIn = true;
+
   return (
-    <haveAccountcontext.Provider value={value}>
-      <modalContext.Provider value={modalValue}>
+    <menuContext.Provider value={menuValue}>
+      <BrowserRouter>
         <div className="app_container">
           <div className="app_content">
-            <BrowserRouter>
+            {isloggedIn ? (
+              <>
+                <Header />
+                <Routes>
+                  <Route path="/inscription" element={<Inscription />} />
+                  <Route path="/connexion" element={<Connexion />} />
+                  <Route path="/notFound" element={<PageNotFound />} />
+                  <Route path="/*" element={<Navigate to="/notFound" />} />
+                  <Route path="/auth" element={<InvitToAuth />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/" element={<Accueil />} />
+                </Routes>
+              </>
+            ) : (
               <Routes>
-                <Route path="/" element={<Accueil />} />
-                <Route path="/auth" element={<Formulaire />} />
+                <Route path="/auth" element={<InvitToAuth />} />
+                <Route path="/inscription" element={<Inscription />} />
+                <Route path="/connexion" element={<Connexion />} />
+                <Route path="*" element={<Navigate to="/auth" />} />
               </Routes>
-            </BrowserRouter>
+            )}
           </div>
         </div>
-      </modalContext.Provider>
-    </haveAccountcontext.Provider>
+      </BrowserRouter>
+    </menuContext.Provider>
   );
 }
 

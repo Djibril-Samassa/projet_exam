@@ -1,23 +1,23 @@
 /*eslint-disable*/
-
+import { menuContext } from "../App";
 import React from "react";
 import Style from "./Accueil.module.css";
-import WelcomeComponent from "../composants/WelcomeComponent";
 import { useState } from "react";
+import QuizCard from "../composants/Quiz/QuizCard";
+import Slide from "react-reveal/Slide";
 import { useContext } from "react";
-import { modalContext } from "../App";
-import Header from "../composants/Header";
+import { authContext } from "../App";
+import InvitToAuth from "../composants/Authentification/InvitToAuth";
 
 export default function Accueil() {
-  const modal = useContext(modalContext);
-  const [showModal, setShowModal] = useState(true);
+  const menu = useContext(menuContext);
+  menu.setSelectedMenu("accueil");
   return (
-    <div>
-      {modal.showModal ? (
-        <WelcomeComponent disable={setShowModal} />
-      ) : (
-        <Header />
-      )}
+    <div className="pageContainer">
+      <Slide left>
+        <h1 className="pageTitle">Homepage</h1>
+      </Slide>
+      <QuizCard />
     </div>
   );
 }

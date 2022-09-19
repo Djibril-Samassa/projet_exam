@@ -11,7 +11,7 @@
   flex-direction: column;
 }
 
-.header > li {
+.header > :nth-child(n) {
   color: #222;
   font-family: "Poppins";
   list-style: none;

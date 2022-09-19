@@ -3,124 +3,139 @@
 import React from "react";
 import Style from "./Header.module.css";
 import { useState } from "react";
-import { useLongPress } from "use-long-press";
+import { useContext } from "react";
+import { menuContext } from "../App";
+import { Link } from "react-router-dom";
 
 export default function Header() {
-  const [selectedMenu, setSelectedMenu] = useState();
+  const menu = useContext(menuContext);
   const [clickingOn, setClickingOn] = useState();
+  const selectedMenu = menu.selectedMenu;
+  const setSelectedMenu = menu.setSelectedMenu;
 
   return (
     <nav className={Style.header}>
       {selectedMenu === "accueil" ? (
-        <li className="selected">Accueil</li>
+        <li to="" className="selected">
+          Accueil
+        </li>
       ) : (
         <span className={Style.menu}>
-          <li
+          <Link
+            to="/"
             onClick={() => {
               setSelectedMenu("accueil");
             }}
             onMouseEnter={() => setClickingOn("accueil")}
             onMouseLeave={() => setClickingOn("")}
-            className="makeBigger"
+            className="makeBigger link"
           >
             Accueil
-          </li>
+          </Link>
           {clickingOn === "accueil" ? (
             <span className={Style.underline}></span>
           ) : null}
         </span>
       )}
-      {selectedMenu === "create" ? (
-        <li className="selected">Créer mon quiz</li>
+      {selectedMenu === "creation" ? (
+        <li to="creation" className="selected">
+          Créer mon quiz
+        </li>
       ) : (
         <span className={Style.menu}>
-          <li
+          <Link
+            to="creation"
             onClick={() => {
-              setSelectedMenu("create");
+              setSelectedMenu("creation");
             }}
             onMouseEnter={() => setClickingOn("create")}
             onMouseLeave={() => setClickingOn("")}
-            className="makeBigger"
+            className="makeBigger link"
           >
             Créer mon quiz
-          </li>
-          {clickingOn === "create" ? (
+          </Link>
+          {clickingOn === "creation" ? (
             <span className={Style.underline}></span>
           ) : null}
         </span>
       )}
-      {selectedMenu === "play" ? (
+      {selectedMenu === "jouer" ? (
         <li className="selected">Jouer</li>
       ) : (
         <span className={Style.menu}>
-          <li
+          <Link
+            to="jouer"
             onClick={() => {
-              setSelectedMenu("play");
+              setSelectedMenu("jouer");
             }}
             onMouseEnter={() => setClickingOn("play")}
             onMouseLeave={() => setClickingOn("")}
-            className="makeBigger"
+            className="makeBigger link"
           >
             Jouer
-          </li>
-          {clickingOn === "play" ? (
+          </Link>
+          {clickingOn === "jouer" ? (
             <span className={Style.underline}></span>
           ) : null}
         </span>
       )}
       <img src="logo.png" className="logo" />
-      {selectedMenu === "new" ? (
+      {selectedMenu === "nouveautes" ? (
         <li className="selected">Nouveautés</li>
       ) : (
         <span className={Style.menu}>
-          <li
+          <Link
+            to="new"
             onClick={() => {
-              setSelectedMenu("new");
+              setSelectedMenu("nouveautes");
             }}
             onMouseEnter={() => setClickingOn("new")}
             onMouseLeave={() => setClickingOn("")}
-            className="makeBigger"
+            className="makeBigger link"
           >
             Nouveautés
-          </li>
-          {clickingOn === "new" ? (
+          </Link>
+          {clickingOn === "nouveautes" ? (
             <span className={Style.underline}></span>
           ) : null}
         </span>
       )}
-      {selectedMenu === "account" ? (
+      {selectedMenu === "profile" ? (
         <li className="selected">Mon Compte</li>
       ) : (
         <span className={Style.menu}>
-          <li
+          <Link
+            to="profile"
             onClick={() => {
-              setSelectedMenu("account");
+              setSelectedMenu("profile");
             }}
-            onMouseEnter={() => setClickingOn("account")}
+            onMouseEnter={() => setClickingOn("profile")}
             onMouseLeave={() => setClickingOn("")}
-            className="makeBigger"
+            className="makeBigger link"
           >
             Mon Compte
-          </li>
-          {clickingOn === "account" ? (
+          </Link>
+          {clickingOn === "profile" ? (
             <span className={Style.underline}></span>
           ) : null}
         </span>
       )}
+
       {selectedMenu === "classement" ? (
         <li className="selected">Classement</li>
       ) : (
         <span className={Style.menu}>
-          <li
+          <Link
+            to="classement"
             onClick={() => {
               setSelectedMenu("classement");
             }}
             onMouseEnter={() => setClickingOn("classement")}
             onMouseLeave={() => setClickingOn("")}
-            className="makeBigger"
+            className="makeBigger link"
           >
             Classement
-          </li>
+          </Link>
           {clickingOn === "classement" ? (
             <span className={Style.underline}></span>
           ) : null}

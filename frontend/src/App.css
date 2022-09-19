@@ -5,6 +5,7 @@
 
 .App {
   text-align: center;
+  overflow: hidden;
 }
 
 .app_container {
@@ -23,6 +24,7 @@
 .button {
   font-family: "Poppins";
   padding: 8px 17px;
+  margin: 0px 10px;
   color: #222;
 }
 
@@ -46,6 +48,7 @@
 }
 
 .link {
+  color: #222;
   text-decoration: none;
 }
 
@@ -56,6 +59,15 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.pageContainer{
+  margin: 0 1em;
+}
+
+.pageTitle {
+  margin:0em 0em 1em 0em;
+  font-family: "poppins";
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -101,6 +113,17 @@
 .selected {
   font-weight: bold;
   border-bottom: 3px solid #efcb68;
+}
+
+.textCenter {
+  margin: 0.5em auto;
+}
+
+.error {
+  width: fit-content;
+  margin: 5px auto;
+  text-align: left;
+  color: red;
 }
 
 @keyframes App-logo-spin {
