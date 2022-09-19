@@ -2,6 +2,7 @@
 import Profile from "./pages/Profil";
 import PageNotFound from "./composants/PageNotFound";
 import "./App.css";
+import PlayQuiz from "./pages/PlayQuiz";
 import InvitToAuth from "./composants/Authentification/InvitToAuth";
 import Accueil from "./pages/Accueil";
 import Inscription from "./composants/Authentification/Inscription";
@@ -42,6 +43,16 @@ function App() {
                   <Route path="/auth" element={<InvitToAuth />} />
                   <Route path="/profile" element={<Profile />} />
                   <Route path="/" element={<Accueil />} />
+                  <Route
+                    path="/playquiz"
+                    element={
+                      localStorage.selectedQuiz ? (
+                        <PlayQuiz />
+                      ) : (
+                        <Navigate to="/" />
+                      )
+                    }
+                  />
                 </Routes>
               </>
             ) : (

@@ -22,6 +22,7 @@ mongoose
 
 secret = "eyJhbGciOiJYjw7a6s5I_7L98S4RYn3y_X7WpRujOdx1RW-e7kbLUk";
 
+/* USER ROUTE */
 app.post("/inscription", async (req, res) => {
   const hashedPassword = await bcrypt.hash(req.body.password, 12);
   try {
@@ -69,24 +70,7 @@ app.post("/connexion", async (req, res) => {
     });
   }
 });
-
-
-app.get("/test", (req, res) => {
-  console.log(req.cookie);
-  try {
-    data = jwt.verify(req.cookies.jwt, secret);
-  } catch (err) {
-    return res.status(401).json({
-      message: "Your token is not valid",
-    });
-  }
-
-  // L'utilisateur est authentifié/autorisé
-  res.json({
-    message: "Votre requête a été acceptée",
-    data,
-  });
-});
+/*FIN USER ROUTE */
 
 app.listen(8000, () => {
   console.log("connexion au serveur => OK");
