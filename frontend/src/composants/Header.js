@@ -44,7 +44,7 @@ export default function Header() {
       ) : (
         <span className={Style.menu}>
           <Link
-            to="creation"
+            to="/quiz/create"
             onClick={() => {
               setSelectedMenu("creation");
             }}
@@ -54,19 +54,19 @@ export default function Header() {
           >
             Créer mon quiz
           </Link>
-          {clickingOn === "creation" ? (
+          {clickingOn === "create" ? (
             <span className={Style.underline}></span>
           ) : null}
         </span>
       )}
-      {selectedMenu === "jouer" ? (
+      {selectedMenu === "play" ? (
         <li className="selected">Jouer</li>
       ) : (
         <span className={Style.menu}>
           <Link
-            to="jouer"
+            to="quiz/list"
             onClick={() => {
-              setSelectedMenu("jouer");
+              setSelectedMenu("play");
             }}
             onMouseEnter={() => setClickingOn("play")}
             onMouseLeave={() => setClickingOn("")}
@@ -74,20 +74,20 @@ export default function Header() {
           >
             Jouer
           </Link>
-          {clickingOn === "jouer" ? (
+          {clickingOn === "play" ? (
             <span className={Style.underline}></span>
           ) : null}
         </span>
       )}
       <img src="logo.png" className="logo" />
-      {selectedMenu === "nouveautes" ? (
+      {selectedMenu === "new" ? (
         <li className="selected">Nouveautés</li>
       ) : (
         <span className={Style.menu}>
           <Link
             to="new"
             onClick={() => {
-              setSelectedMenu("nouveautes");
+              setSelectedMenu("new");
             }}
             onMouseEnter={() => setClickingOn("new")}
             onMouseLeave={() => setClickingOn("")}
@@ -95,7 +95,7 @@ export default function Header() {
           >
             Nouveautés
           </Link>
-          {clickingOn === "nouveautes" ? (
+          {clickingOn === "new" ? (
             <span className={Style.underline}></span>
           ) : null}
         </span>
@@ -105,7 +105,7 @@ export default function Header() {
       ) : (
         <span className={Style.menu}>
           <Link
-            to="profile"
+            to="/profile/id:4866"
             onClick={() => {
               setSelectedMenu("profile");
             }}

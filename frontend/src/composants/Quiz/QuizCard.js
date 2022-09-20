@@ -3,15 +3,15 @@ import React from "react";
 import quiz from "../../quiz.json";
 import { useNavigate } from "react-router-dom";
 import Style from "./QuizCard.module.css";
-import PlayQuiz from "../../pages/PlayQuiz";
 
 export default function QuizCard(props) {
   // niveau back faire un post de l'id du quiz selectionné => PlayQuiz
   const redirect = useNavigate();
-  const redirectToQuiz = async () => {
+  const id = quiz.id;
+  const redirectToQuiz = () => {
     console.log(quiz);
-    await localStorage.setItem("selectedQuiz", quiz.title);
-    redirect("/playQuiz");
+    localStorage.setItem("selectedQuiz", quiz.title);
+    redirect(`/quiz/play/id:${id}`);
   };
   const Quiz = props.quiz;
   return (
@@ -21,7 +21,7 @@ export default function QuizCard(props) {
         redirectToQuiz();
       }}
     >
-      <img alt="phooto" src="./rocket.png" className={Style.image} />
+      <img alt="phooto" src="../rocket.png" className={Style.image} />
       <div className={Style.title}>
         <h4>L'astronomie</h4>
       </div>

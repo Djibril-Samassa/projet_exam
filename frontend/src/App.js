@@ -1,14 +1,16 @@
 /*eslint-disable*/
 import Profile from "./pages/Profil";
 import PageNotFound from "./composants/PageNotFound";
+import List from "./pages/List";
 import "./App.css";
-import PlayQuiz from "./pages/PlayQuiz";
+import PlayQuiz from "./pages/Quiz/PlayQuiz";
 import InvitToAuth from "./composants/Authentification/InvitToAuth";
 import Accueil from "./pages/Accueil";
 import Inscription from "./composants/Authentification/Inscription";
 import Connexion from "./composants/Authentification/Connexion";
 import { createContext, useEffect, useRef, useState } from "react";
 import Header from "./composants/Header";
+import CreateQuiz from "./pages/Quiz/CreateQuiz";
 import { Route, Routes, BrowserRouter, Navigate } from "react-router-dom";
 export const authContext = createContext();
 export const menuContext = createContext();
@@ -41,10 +43,12 @@ function App() {
                   <Route path="/notFound" element={<PageNotFound />} />
                   <Route path="/*" element={<Navigate to="/notFound" />} />
                   <Route path="/auth" element={<InvitToAuth />} />
-                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/profile/:id" element={<Profile />} />
                   <Route path="/" element={<Accueil />} />
+                  <Route path="/quiz/create" element={<CreateQuiz />} />
+                  <Route path="/quiz/list" element={<List />} />
                   <Route
-                    path="/playquiz"
+                    path="/quiz/play/:id"
                     element={
                       localStorage.selectedQuiz ? (
                         <PlayQuiz />

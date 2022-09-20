@@ -1,0 +1,79 @@
+.formulaire {
+  font-family: "Poppins";
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  background-color: #efcb68;
+  width: 80vw;
+  margin: 2em auto;
+  border-radius: 5px;
+}
+
+.inputContainer {
+  margin: 0.5em auto;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputContainer > input {
+  font-family: "Poppins";
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding: 5px 15px;
+  font-size: 1em;
+}
+.validation {
+  font-family: "poppins";
+  cursor: pointer;
+  margin: 2em auto 0em auto;
+  padding: 5px 17px;
+  width: fit-content;
+  border: 3px solid #222;
+  border-radius: 5px;
+  transform: scale(1);
+  text-decoration: none;
+}
+
+.validation:hover {
+  background-color: #222;
+  color: #efcb68;
+}
+
+.formTitle {
+  margin: 0 auto 1em auto;
+}
+
+.link {
+  margin: 1em 0em 0em 5em;
+  color: #222;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.blocsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blocsContainer > div {
+  margin: 0em 1em;
+  background-color: blue;
+}
+
+.blocsContainer > div:nth-child(1) {
+  width: 40%;
+}
+
+.blocsContainer > div:nth-child(3) {
+  width: 60%;
+}
+
+.line {
+  background-color: black;
+  padding: 1px;
+}
