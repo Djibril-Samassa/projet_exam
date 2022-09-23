@@ -8,8 +8,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Inscription() {
   const redirect = useNavigate();
-  const auth = useContext(authContext);
-  auth.setAuth(false);
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
