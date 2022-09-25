@@ -10,12 +10,10 @@ export default function QuizCard(props) {
   const redirect = useNavigate();
   const quiz = props.quiz;
   const redirectToQuiz = () => {
-    console.log(quiz);
     appStorage.setItem("selectedQuiz", quiz);
     redirect(`/quiz/play/id:${quiz._id}`);
   };
   const id = quiz?.id;
-  console.log(quiz);
   return (
     <div
       className={Style.container}

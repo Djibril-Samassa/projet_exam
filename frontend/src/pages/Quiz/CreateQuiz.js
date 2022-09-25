@@ -20,15 +20,12 @@ export default function CreateQuiz() {
       bonneReponse: reponse,
     });
     setChoosen(reponse);
-    console.log(reponse);
     state.questions.length >= 3 ? setFinish(true) : null;
   };
 
   const handleNext = async () => {
     const lastQ = await question;
-    console.log(lastQ);
     state.questions.push(lastQ);
-    console.log(state);
     setQuestion({});
     setChoosen(null);
     setFinish(null);

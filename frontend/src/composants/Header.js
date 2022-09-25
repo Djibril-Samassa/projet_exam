@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { menuContext } from "../App";
 import { Link } from "react-router-dom";
+import Logo from "../Logo.png";
 
 export default function Header() {
   const menu = useContext(menuContext);
@@ -79,7 +80,7 @@ export default function Header() {
           ) : null}
         </span>
       )}
-      <img src="logo.png" className="logo" />
+      <img src={Logo} className="logo" />
       {selectedMenu === "new" ? (
         <li className="selected">Nouveautés</li>
       ) : (
