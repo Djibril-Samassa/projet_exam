@@ -6,10 +6,11 @@ const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const app = express();
 const User = require("./models/inscriptionModel");
-const { updateOne } = require("./models/inscriptionModel");
+const Quiz = require("./models/QuizModel");
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(express.static("public"));
 
 mongoose
   .connect(
@@ -72,6 +73,37 @@ app.post("/connexion", async (req, res) => {
 });
 /*FIN USER ROUTE */
 
+/*QUIZ ROUTE*/
+app.post("/quiz/create", (req, res) => {
+  try {
+    Quiz.create({
+      title: req.body.title,
+      about: req.body.about,
+      description: req.body.description,
+      questions: req.body.questions,
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: "Erreur, le quiz n'a pas été enregistré",
+    });
+  }
+  res.status(201).json({
+    message: "Quiz crée",
+  });
+});
+
+app.get("/quiz", (req, res) => {
+  try {
+    Quiz.find().then((list) => {
+      res.send(list);
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: "Didnt get list",
+    });
+  }
+});
+/*FIN QUIZ ROUTE*/
 
 app.listen(8000, () => {
   console.log("connexion au serveur => OK");

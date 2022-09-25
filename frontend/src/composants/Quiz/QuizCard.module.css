@@ -6,6 +6,8 @@
   padding: 1em;
   background-color: #ffc24a;
   border-radius: 5px;
+  min-width: 15%;
+  min-height: 10vh;
   max-width: 15%;
   max-height: 25vh;
   box-shadow: 10px 5px 25px black;
@@ -23,5 +25,5 @@
 }
 
 .image {
-  max-width: 60%;
+  max-width: 40%;
 }

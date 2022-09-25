@@ -2,31 +2,17 @@
 import react, { useEffect, useState } from "react";
 import Style from "./CreateQuiz.module.css";
 import Slide from "react-reveal";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateQuiz() {
   const [question, setQuestion] = useState({});
-  const [state, setState] = useState({});
-  const [choosen, setChoosen] = useState();
-  const file = document.querySelector("#file");
-  window.addEventListener("change", (e) => {
-    // Get the selected file
-    const [file] = e.target.files;
-    // Get the file name and size
-    const { name: fileName, size } = file;
-    // Convert size in bytes to kilo bytes
-    const fileSize = (size / 1000).toFixed(2);
-    // Set the text content
-    const fileNameAndSize = `${fileName}`;
-    document.querySelector(".file-name").textContent = fileNameAndSize;
+  const [state, setState] = useState({
+    questions: [],
   });
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
-  useEffect(() => {
-    console.log(question);
-  }, [question]);
+  const [choosen, setChoosen] = useState();
+  const [finish, setFinish] = useState(false);
+  const redirect = useNavigate();
 
   const handleCheckResponses = (reponse) => {
     setQuestion({
@@ -35,6 +21,37 @@ export default function CreateQuiz() {
     });
     setChoosen(reponse);
     console.log(reponse);
+    state.questions.length >= 3 ? setFinish(true) : null;
+  };
+
+  const handleNext = async () => {
+    const lastQ = await question;
+    console.log(lastQ);
+    state.questions.push(lastQ);
+    console.log(state);
+    setQuestion({});
+    setChoosen(null);
+    setFinish(null);
+  };
+
+  const handleValidateQuiz = () => {
+    state.questions.push(question);
+    state.title &&
+    state.description &&
+    state.about &&
+    state.questions.length >= 4
+      ? axios
+          .post("http://localhost:8000/quiz/create", state)
+          .then((res) => {
+            alert("Votre quiz a bien été créé ✅");
+            redirect("/quiz/list");
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      : alert(
+          "Veuillez remplir tous les champs à propos du formulaire(à gauche)"
+        );
   };
   return (
     <div className="pageContainer">
@@ -74,77 +91,68 @@ export default function CreateQuiz() {
                 required
               />
             </span>
-
-            <span className={Style.pdpInput}>
-              {" "}
-              <label for="imgInput">+ Choisir une photo de profil</label>
-              <input
-                onChange={(e) => setState({ ...state, image: e.target.value })}
-                type="file"
-                required
-                id="imgInput"
-                accept="image/png, image/gif, image/jpeg"
-              />
-              <p class="file-name"></p>
-            </span>
           </div>
           <span className={Style.line}></span>
           <Slide left>
             <div className={Style.secondContainer}>
+              <p className={Style.formTitle}>
+                {state?.questions?.length} questions renseignées sur un minimum
+                de 4
+              </p>
               <span className={Style.question}>
                 <label for="title">Question</label>
                 <input
                   className={Style.input}
+                  value={question.question ? question.question : ""}
                   onChange={(e) =>
                     setQuestion({ ...question, question: e.target.value })
                   }
                   type="text"
-                  required
                 />
               </span>
               <div className={Style.questionContainer}>
                 <span>
                   <label for="title">Réponse A</label>
                   <input
+                    value={question.reponseA ? question.reponseA : ""}
                     className={Style.input}
                     onChange={(e) =>
                       setQuestion({ ...question, reponseA: e.target.value })
                     }
                     type="text"
-                    required
                   />
                 </span>
                 <span>
                   <label for="title">Réponse B</label>
                   <input
+                    value={question.reponseB ? question.reponseB : ""}
                     className={Style.input}
                     onChange={(e) =>
                       setQuestion({ ...question, reponseB: e.target.value })
                     }
                     type="text"
-                    required
                   />
                 </span>
                 <span>
                   <label for="title">Réponse C</label>
                   <input
+                    value={question.reponseC ? question.reponseC : ""}
                     className={Style.input}
                     onChange={(e) =>
                       setQuestion({ ...question, reponseC: e.target.value })
                     }
                     type="text"
-                    required
                   />
                 </span>
                 <span>
                   <label for="title">Réponse D</label>
                   <input
+                    value={question.reponseD ? question.reponseD : ""}
                     className={Style.input}
                     onChange={(e) =>
                       setQuestion({ ...question, reponseD: e.target.value })
                     }
                     type="text"
-                    required
                   />
                 </span>
               </div>
@@ -207,6 +215,30 @@ export default function CreateQuiz() {
                   )}
                 </span>
               ) : null}
+              <div>
+                <div className={Style.validateButtonsContainer}>
+                  {choosen ? (
+                    <span
+                      className={`onHover ${Style.next}`}
+                      onClick={() => {
+                        handleNext();
+                      }}
+                    >
+                      Ajouter la question au quiz
+                    </span>
+                  ) : null}
+                  {finish ? (
+                    <span
+                      onClick={() => {
+                        handleValidateQuiz();
+                      }}
+                      className={`onHover ${Style.next}`}
+                    >
+                      Ajouter la question et terminer
+                    </span>
+                  ) : null}
+                </div>
+              </div>
             </div>
           </Slide>
         </div>

@@ -7,6 +7,7 @@
   width: 80vw;
   margin: 2em auto;
   border-radius: 5px;
+  min-height: 57vh;
 }
 
 input,
@@ -79,6 +80,7 @@ textarea {
 }
 
 .line {
+  height: 50vh;
   background-color: black;
   padding: 1px;
 }
@@ -103,6 +105,7 @@ textarea {
 }
 
 .input {
+  padding: 0.5em;
   width: 70%;
 }
 
@@ -116,35 +119,8 @@ textarea {
 .descriptionInput {
   width: 90%;
   height: 10vh;
-  padding: 1.5em;
+  padding: 0.5em;
   border-radius: 5px;
-}
-
-.pdpInput > input {
-  opacity: 0;
-  width: 0.1px;
-  height: 0.1px;
-  position: absolute;
-}
-
-.pdpInput > label {
-  display: block;
-  position: relative;
-  width: fit-content;
-  padding: 0em 1em;
-  border-radius: 25px;
-  border: 4px solid #222;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.file-name {
-  position: absolute;
-  bottom: -35px;
-  left: 10px;
-  font-size: 0.85rem;
 }
 
 /* QUESTIONS */
@@ -179,10 +155,36 @@ textarea {
 
 .notSelected {
   cursor: pointer;
-  background-color: #fff;
+  border: 3px solid #222;
 }
 
 .selected {
   background-color: green;
   color: #fff;
+  border: 3px solid transparent;
+}
+
+.validateButtonsContainer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 3em 0;
+}
+
+.next {
+  font-size: 1em;
+  font-family: "Poppins";
+  background-color: #fff;
+  margin-right: 2.5em;
+  padding: 5px 16px;
+  border-radius: 5px;
+  border: 3px solid black;
+}
+
+.imageContainer {
+  background-color: #fff;
+  border-radius: 50%;
+  border: 5px solid black;
+  width: 5vw;
+  height: 10vh;
 }
